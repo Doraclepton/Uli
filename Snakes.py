@@ -5,7 +5,6 @@ import uuid
 import time
 import math
 
-# --- КОНФИГУРАЦИЯ 2026 ---
 WIDTH, HEIGHT = 800, 600
 FPS = 60
 BASE_RADIUS = 20
@@ -98,27 +97,23 @@ class Game:
     def draw_menu(self):
         self.screen.fill((30, 30, 45))
 
-        # Заголовок
         title = self.big_font.render("BATTLE ARENA 2026", True, (255, 255, 255))
         self.screen.blit(title, (WIDTH // 2 - 150, 50))
 
-        # Кнопка Создать
         self.create_btn = pygame.Rect(WIDTH // 2 - 150, 150, 300, 60)
         pygame.draw.rect(self.screen, (46, 204, 113), self.create_btn, border_radius=10)
         txt = self.font.render("СОЗДАТЬ КОМНАТУ", True, (255, 255, 255))
         self.screen.blit(txt, (WIDTH // 2 - 115, 165))
 
-        # Секция ввода
         instr = self.font.render("Или введите ID для входа:", True, (180, 180, 180))
         self.screen.blit(instr, (WIDTH // 2 - 140, 260))
 
         self.input_rect = pygame.Rect(WIDTH // 2 - 150, 300, 300, 50)
         pygame.draw.rect(self.screen, (255, 255, 255), self.input_rect, border_radius=5)
-        # Текст ввода
+
         input_surf = self.font.render(self.input_text, True, (40, 40, 40))
         self.screen.blit(input_surf, (self.input_rect.x + 10, self.input_rect.y + 10))
 
-        # Кнопка Войти
         self.join_btn = pygame.Rect(WIDTH // 2 - 150, 370, 300, 60)
         pygame.draw.rect(self.screen, (52, 152, 219), self.join_btn, border_radius=10)
         txt_join = self.font.render("ПРИСОЕДИНИТЬСЯ", True, (255, 255, 255))
@@ -178,14 +173,12 @@ class Game:
             if keys[pygame.K_w]: self.my_pos[1] -= speed; moved = True
             if keys[pygame.K_s]: self.my_pos[1] += speed; moved = True
 
-            # Границы
             self.my_pos[0] = max(self.my_size, min(self.my_pos[0], WIDTH - self.my_size))
             self.my_pos[1] = max(self.my_size, min(self.my_pos[1], HEIGHT - self.my_size))
 
-            # Еда (общая для комнаты через сид времени)
             cur_t = int(time.time() / 15)
             if self.last_food_update != cur_t:
-                random.seed(cur_t + hash(self.room_id))  # Еда зависит от ID комнаты
+                random.seed(cur_t + hash(self.room_id))  
                 self.food_seeds = [[random.randint(30, WIDTH - 30), random.randint(30, HEIGHT - 30)] for _ in range(12)]
                 self.last_food_update = cur_t
 
@@ -195,7 +188,6 @@ class Game:
                     self.my_size += 3
                     moved = True
 
-            # Проверка поедания других игроков
             for p_id, p in list(self.players.items()):
                 dist = math.hypot(self.my_pos[0] - p.x, self.my_pos[1] - p.y)
                 if dist < self.my_size and self.my_size > p.size + 10:
@@ -205,17 +197,14 @@ class Game:
                 self.send_data()
                 self.last_send_time = pygame.time.get_ticks()
 
-        # Отрисовка еды
         for food in self.food_seeds:
             pygame.draw.circle(self.screen, (231, 76, 60), food, FOOD_RADIUS)
 
-        # Отрисовка чужих игроков
         for p in list(self.players.values()):
             p.x += (p.target_x - p.x) * 0.15  # Плавное движение
             p.y += (p.target_y - p.y) * 0.15
             pygame.draw.circle(self.screen, p.color, (int(p.x), int(p.y)), int(p.size))
 
-        # Отрисовка себя
         if not self.global_game_over:
             pygame.draw.circle(self.screen, MY_COLOR, (int(self.my_pos[0]), int(self.my_pos[1])), int(self.my_size))
             id_tag = self.font.render(f"ROOM: {self.room_id}", True, (100, 100, 100))
