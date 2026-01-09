@@ -11,7 +11,7 @@ BASE_RADIUS = 20
 FOOD_RADIUS = 8
 BROKER = "broker.emqx.io"
 # Базовый путь к топику
-TOPIC_PREFIX = "python/mqtt/battle2026/room_"
+TOPIC_PREFIX = "python" #Я тут заменил топик на свой сервер для обеспечения безопасности сервера
 
 MY_ID = str(uuid.uuid4())[:5]
 MY_COLOR = (random.randint(50, 255), random.randint(50, 255), random.randint(50, 255))
