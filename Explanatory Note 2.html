@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Документация</title>
+    <link rel="shortcut icon" href="Sun.ico" type="image/x-icon">
+<style>
+p {
+font-size: 20px;
+}
+.tefe {
+-webkit-text-stroke: 1px #000; 
+text-stroke: 1px #000;
+}
+</style>
 </head>
 <body>
-Snakes - онлайн игра про движущееся шарики. Подключения игрока к игроку осуществляется через протокол MQTT (Message Queuing Telemetry Transport). Это легковесный протокол обмена сообщениями по принципу «издатель-подписчик». Он работает поверх TCP/IP (или других протоколов) через центральный сервер, называемый брокером, который пересылает сообщения от Издателей к Подписчикам, делая связь эффективной и надежной, даже при нестабильных соединениях. paho.mqtt.client - это популярная Python-библиотека, являющаяся частью проекта Eclipse Paho, которая позволяет приложениям на Python легко подключаться и взаимодействовать с MQTT-брокерами для обмена сообщениями. Она используется в игре Snakes.
+<h1 align="center" style="color:#FFFF00" class="tefe">Snakes</h1> <p style="text-align: center;">- онлайн игра про движущееся шарики.</p> 
+
+<p>Подключения игрока к игроку осуществляется через протокол <b>MQTT (Message Queuing Telemetry Transport)</b>. Это легковесный протокол обмена сообщениями по принципу «издатель-подписчик». Он работает поверх <b>TCP/IP</b> (или других протоколов) через центральный сервер, называемый брокером, который пересылает сообщения от Издателей к Подписчикам, делая связь эффективной и надежной, даже при нестабильных соединениях.</p> 
+
+<p><b>paho.mqtt.client</b> - это Python-библиотека, являющаяся частью проекта <b>Eclipse Paho</b>, которая позволяет приложениям на Python легко подключаться и взаимодействовать с <b>MQTT-брокерами</b> для обмена сообщениями. Она используется в игре <span style="color:#FFFF00" class="tefe">Snakes</span>.</p>
+
+<p><b>pygame</b> - это популярная Python-библиотека, представляющая собой набор модулей для создания 2D-игр и мультимедийных приложений.</p>
+
+<a href="https://eclipse.dev/paho/files/paho.mqtt.python/html/index.html" style="text-decoration: none; color: blue; border: 1px solid #ccc; padding: 5px;font-size: 20px;">Перейти на Eclipse Paho: paho.mqtt.client</a>
+
+<a href="https://pyga.me/docs/" style="text-decoration: none; color: blue; border: 1px solid #ccc; padding: 5px;font-size: 20px;">Документация pygame</a>
 
 </body>
 </html>
