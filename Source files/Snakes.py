@@ -11,11 +11,14 @@ BASE_RADIUS = 20
 FOOD_RADIUS = 8
 BROKER = "broker.emqx.io"
 # Базовый путь к топику
-TOPIC_PREFIX = "python" #Я тут заменил топик на свой сервер для обеспечения безопасности сервера
+TOPIC_PREFIX = "python" #Я заменил топик на свой сервер, для обеспечения безопасности сервера
 
 MY_ID = str(uuid.uuid4())[:5]
 MY_COLOR = (random.randint(50, 255), random.randint(50, 255), random.randint(50, 255))
 
+pygame.display.set_caption("Snakes")
+icon = pygame.image.load("Sun.ico")
+pygame.display.set_icon(icon)
 
 class RemotePlayer:
     def __init__(self, x, y, color, size):
@@ -97,8 +100,8 @@ class Game:
     def draw_menu(self):
         self.screen.fill((30, 30, 45))
 
-        title = self.big_font.render("BATTLE ARENA 2026", True, (255, 255, 255))
-        self.screen.blit(title, (WIDTH // 2 - 150, 50))
+        title = self.big_font.render("Snakes", True, (255, 255, 255))
+        self.screen.blit(title, (WIDTH // 2 - 50, 50))
 
         self.create_btn = pygame.Rect(WIDTH // 2 - 150, 150, 300, 60)
         pygame.draw.rect(self.screen, (46, 204, 113), self.create_btn, border_radius=10)
